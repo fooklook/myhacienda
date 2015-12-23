@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 class WelcomeController extends Controller {
 
 	/*
@@ -30,7 +33,10 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+		Mail::send('welcome', ['key' => 'value'], function($message)
+		{
+			$message->to('xiashuo.he@foxmail.com', 'hehe')->subject('Welcome!');
+		});
 	}
 
 }
