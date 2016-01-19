@@ -13,8 +13,9 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-
-		// $this->call('UserTableSeeder');
+		//创建管理员账户
+		$this->call('AdminUserSeeder');
+		//
 	}
 
 }

@@ -33,10 +33,11 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		Mail::send('welcome', ['key' => 'value'], function($message)
-		{
-			$message->to('xiashuo.he@foxmail.com', 'hehe')->subject('Welcome!');
-		});
+//		Mail::send('welcome', ['key' => 'value'], function($message)
+//		{
+//			$message->to('xiashuo.he@foxmail.com', 'hehe')->subject('Welcome!');
+//		});
+
 	}
 
 }
