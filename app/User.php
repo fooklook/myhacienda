@@ -9,8 +9,6 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
 	use Authenticatable, CanResetPassword;
-	//默认头像
-	public $user_avatars = '/aravats.jpg';
 
 	/**
 	 * The database table used by the model.
@@ -33,5 +31,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+	/** 与管理员账户关联 **/
+	public function adminuser(){
+		return $this->hasOne('App\AdminUser','user_id','user_id');
+	}
 
 }

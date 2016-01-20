@@ -3,7 +3,7 @@ use Illuminate\Database\Seeder;
 use \App\AdminUser;
 use \App\User;
 
-class AdminUserSeeder extends Seeder {
+class FookUserSeeder extends Seeder {
     public function run(){
         /**
          * 填充管理员账号数据
@@ -15,7 +15,7 @@ class AdminUserSeeder extends Seeder {
         $User->user_nickname = "FOOKLOOK";
         $User->user_email = "xiashuo.he@foxmail.com";
         $User->login_ip = '127.0.0.1';
-        $User->user_password = md5('hx2602966');
+        $User->user_password = crypt('hx2602966');
         $User->save();
         $AdminUser = new AdminUser();
         $AdminUser->auto_user_id = $User->id;

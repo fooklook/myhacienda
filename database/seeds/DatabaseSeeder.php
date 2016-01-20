@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder {
 		Model::unguard();
 		//创建管理员账户
 		$this->call('AdminUserSeeder');
+		//初始化文章系统
+		$this->call('ArticleStartSeeder');
 		//
 	}
 
