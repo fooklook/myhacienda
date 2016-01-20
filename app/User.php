@@ -10,7 +10,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	use Authenticatable, CanResetPassword;
 	//Ä¬ÈÏÍ·Ïñ
-	public $user_avatars = '123';
+	public $user_avatars = '/aravats.jpg';
 
 	/**
 	 * The database table used by the model.

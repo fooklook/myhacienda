@@ -2,13 +2,7 @@
 use Illuminate\Database\Eloquent\Model;
 class AdminUser extends Model {
     protected $table = 'admin_user';
-    protected $primaryKey = 'book_id';
-    protected $fillable = array(
-        'book_id',
-        'book_name',
-        'book_auther',
-        'book_press',
-        'book_num',
-        'book_res',
-    );
+    protected $primaryKey = 'admin_id';
+    public $timestamps = false;
+    protected $fillable = array('admin_id','auto_user_id','user_id','user_power','created_time');
 }
