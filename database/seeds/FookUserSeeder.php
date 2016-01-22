@@ -21,7 +21,7 @@ class FookUserSeeder extends Seeder {
         $AdminUser->auto_user_id = $User->id;
         $AdminUser->user_id = $User->id;
         $AdminUser->user_power = 7;
-        $AdminUser->created_time = \Carbon\Carbon::now();
+        $AdminUser->created_at = \Carbon\Carbon::now();
         $AdminUser->save();
     }
 }

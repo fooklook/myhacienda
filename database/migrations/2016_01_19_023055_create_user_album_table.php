@@ -14,11 +14,11 @@ class CreateUserAlbumTable extends Migration {
 	{
 		Schema::create('album', function(Blueprint $table)
 		{
-			$table->increments('album_id');
-			$table->integer('user_id');
-			$table->string('album_name');
-			$table->text('album_describe');
-			$table->string('album_cover');
+			$table->increments('album_id');				//相册id
+			$table->integer('user_id');					//用户id
+			$table->string('album_name', 120);				//相册名
+			$table->mediumText('album_describe');				//相册描述
+			$table->string('album_cover');				//相册封面
 			$table->timestamps();
 		});
 	}

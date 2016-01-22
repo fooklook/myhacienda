@@ -10,28 +10,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	use Authenticatable, CanResetPassword;
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
 	protected $table = 'user';
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
+	protected $primaryKey = 'user_id';
+
 	protected $fillable = ['user_avatars', 'user_name', 'user_nickname', 'login_ip', 'user_email', 'user_password'];
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
 	protected $hidden = ['password', 'remember_token'];
 
-	/** 与管理员账户关联 **/
+	public $timestamps = true;
+
+	/** 与adminuser关联 **/
 	public function adminuser(){
 		return $this->hasOne('App\AdminUser','user_id','user_id');
 	}

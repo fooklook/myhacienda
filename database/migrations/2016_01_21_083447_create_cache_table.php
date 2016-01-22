@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConnTypeTable extends Migration {
+class CreateCacheTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,12 @@ class CreateConnTypeTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('conn_type', function(Blueprint $table)
+		Schema::create('cache', function(Blueprint $table)
 		{
-			$table->increments('conn_type_id');
-			$table->string('conn_type',15);
-			$table->timestamp('created_at');
+			$table->increments('cache_id');
+			$table->string('cache_name',60)->unique();
+			$table->text('cache_json');
+			$table->timestamps();
 		});
 	}
 
@@ -27,7 +28,7 @@ class CreateConnTypeTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('conn_type');
+		Schema::drop('cache');
 	}
 
 }

@@ -14,11 +14,11 @@ class CreateAdminUserTable extends Migration {
 	{
 		Schema::create('admin_user', function(Blueprint $table)
 		{
-			$table->increments('admin_id');
-			$table->integer('auto_user_id');
-			$table->integer('user_id');
-			$table->smallInteger('user_power');
-			$table->timestamp('created_time');
+			$table->increments('admin_id');				//����Աid
+			$table->integer('auto_user_id');			//��Ȩ�û�id
+			$table->integer('user_id');					//�û�id
+			$table->smallInteger('user_power');			//�û�Ȩ�� 7Ϊϵͳ����Ա��6Ϊ���������Ա��4Ϊ�������Ա��2Ϊ���¹���Ա��1Ϊ������˹���Ա��
+			$table->timestamp('created_at');			//����ʱ��
 		});
 	}
 

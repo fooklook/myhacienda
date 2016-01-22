@@ -14,15 +14,16 @@ class CreateArticleTable extends Migration {
 	{
 		Schema::create('article', function(Blueprint $table)
 		{
-			$table->increments('article_id');		//ÎÄÕÂid
-			$table->integer('conn_type_id');		//ÄÚÈÝÀàÐÍ 1:html or 2:md
-			$table->integer('user_id');				//ÓÃ»§id
-			$table->string('article_title');		//ÎÄÕÂ±êÌâ
-			$table->mediumText('article_digest');	//ÎÄÕÂÕªÒª
-			$table->string('article_cover');		//ÎÄÕÂ·âÃæÍ¼Æ¬
-			$table->text('article_content');		//ÎÄÕÂÄÚÈÝ
-			$table->string('article_from');			//ÎÄÕÂÈ¡×Ô
-			$table->smallInteger('article_status')->default('1');	//ÎÄÕÂ×´Ì¬
+			$table->increments('article_id');		//ï¿½ï¿½ï¿½ï¿½id
+			$table->integer('conn_type_id');		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1:html or 2:md
+			$table->integer('user_id');				//ï¿½Ã»ï¿½id
+			$table->tinyInteger('article_classify_id');//åˆ†ç±»id
+			$table->string('article_title');		//ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½
+			$table->mediumText('article_digest');	//ï¿½ï¿½ï¿½ï¿½ÕªÒª
+			$table->string('article_cover');		//ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½Í¼Æ¬
+			$table->text('article_content');		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			$table->string('article_from');			//ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½
+			$table->smallInteger('article_status')->default('1');	//ï¿½ï¿½ï¿½ï¿½×´Ì¬
 			$table->timestamps();
 		});
 	}

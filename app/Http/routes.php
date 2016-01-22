@@ -27,6 +27,7 @@
 //		//Route::controller('detail{$id}','');
 //	}
 //);
+Route::get('create', 'HomeController@create');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
@@ -34,3 +35,4 @@ Route::controllers([
 Route::get('error404',function(){
 	return view('errors.404');
 });
+

@@ -14,10 +14,10 @@ class CreateArticleTagRelTable extends Migration {
 	{
 		Schema::create('article_tag_rel', function(Blueprint $table)
 		{
-			$table->increments('article_tag_rel_id');
-			$table->integer('article_id');
-			$table->integer('article_tag_id');
-			$table->timestamp('created_time');
+			$table->increments('article_tag_rel_id');		//��ǩ����id
+			$table->integer('article_id');					//����id
+			$table->integer('article_tag_id');				//��ǩid
+			$table->timestamp('created_at');				//����ʱ��
 		});
 	}
 

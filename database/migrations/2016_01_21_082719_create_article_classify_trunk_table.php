@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConnTypeTable extends Migration {
+class CreateArticleClassifyTrunkTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,10 @@ class CreateConnTypeTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('conn_type', function(Blueprint $table)
+		Schema::create('article_classify_trunk', function(Blueprint $table)
 		{
-			$table->increments('conn_type_id');
-			$table->string('conn_type',15);
+			$table->increments('article_classify_trunk_id');
+			$table->string('article_classify_trunk_name',60);
 			$table->timestamp('created_at');
 		});
 	}
@@ -27,7 +27,7 @@ class CreateConnTypeTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('conn_type');
+		Schema::drop('article_classify_trunk');
 	}
 
 }

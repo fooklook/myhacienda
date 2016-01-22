@@ -6,7 +6,7 @@ use \App\User;
 class AdminUserSeeder extends Seeder {
     public function run(){
         /**
-         * Ìî³ä¹ÜÀíÔ±ÕËºÅÊı¾İ
+         * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½
          */
         DB::table('user')->truncate();
         DB::table('admin_user')->truncate();
@@ -18,10 +18,10 @@ class AdminUserSeeder extends Seeder {
         $User->user_password = md5('hx2602966');
         $User->save();
         $AdminUser = new AdminUser();
-        $AdminUser->auto_user_id = $User->id;
-        $AdminUser->user_id = $User->id;
+        $AdminUser->auto_user_id = $User->user_id;
+        $AdminUser->user_id = $User->user_id;
         $AdminUser->user_power = 7;
-        $AdminUser->created_time = \Carbon\Carbon::now();
+        $AdminUser->created_at = \Carbon\Carbon::now();
         $AdminUser->save();
     }
 }

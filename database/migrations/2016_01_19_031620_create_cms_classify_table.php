@@ -17,7 +17,7 @@ class CreateCmsClassifyTable extends Migration {
 			$table->increments('cms_classify_id');
 			$table->string('cms_classify_name');
 			$table->string('cms_classify_route');
-			$table->timestamp('created_time');
+			$table->timestamp('created_at');
 		});
 	}
 

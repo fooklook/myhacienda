@@ -14,11 +14,12 @@ class CreateUserAlbumImageTable extends Migration {
 	{
 		Schema::create('album_image', function(Blueprint $table)
 		{
-			$table->increments('album_image_id');
-			$table->integer('album_id');
-			$table->string('image_src');
-			$table->string('image_type');
-			$table->timestamp('created_time');
+			$table->increments('album_image_id');		//相册图片id
+			$table->integer('album_id');				//相册id
+			$table->string('image_src')->unique();				//图片地址
+			$table->string('image_alt');				//图片说明
+			$table->string('image_type');				//图片类型
+			$table->timestamp('created_at');			//创建时间
 		});
 	}
 
