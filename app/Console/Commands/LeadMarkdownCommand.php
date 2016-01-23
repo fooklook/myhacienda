@@ -25,7 +25,7 @@ class LeadMarkdownCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $description = '½«markdownÎÄ¼þÄÚÈÝ×ª»»³Éhtml£¬²¢´æ´¢µ½Êý¾Ý¿âÖÐ¡£';
+	protected $description = 'ï¿½ï¿½markdownï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½htmlï¿½ï¿½ï¿½ï¿½ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ð¡ï¿½';
 
 	/**
 	 * Create a new command instance.
@@ -37,9 +37,9 @@ class LeadMarkdownCommand extends Command {
 		parent::__construct();
 	}
 
-	/** ÓÃ»§ÐÅÏ¢ **/
+	/** ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ **/
 	private $user;
-	/** ÒýÓÃ±¾µØÁ´½ÓµÄÎÄÕÂidÊý×é **/
+	/** ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½ **/
 	private $wait_article = array();
 
 	/**
@@ -49,32 +49,32 @@ class LeadMarkdownCommand extends Command {
 	 */
 	public function fire(){
 		header("Content-type: text/html; charset=utf-8");
-		//¹ÜÀíÔ±µÇÂ¼
+		//ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Â¼
 		$this->user = $this->login();
-		//ÐèÒª±éÀúµÄÄ¿Â¼
+		//ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼
 		$path = 'D:/laravel/laravelnote';
-		//´Ó¸ùÄ¿Â¼µÄREADMEÎÄ¼þµ¼Èë·ÖÀà£¬²¢»ñÈ¡Ä¿Â¼Óë·ÖÀàÖ®¼äµÄ¶ÔÓ¦¹ØÏµ¡£
+		//ï¿½Ó¸ï¿½Ä¿Â¼ï¿½ï¿½READMEï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à£¬ï¿½ï¿½ï¿½ï¿½È¡Ä¿Â¼ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ä¶ï¿½Ó¦ï¿½ï¿½Ïµï¿½ï¿½
 		$path_array = $this->classify($path . '/' .'README.md');
-		//±éÀú
+		//ï¿½ï¿½ï¿½ï¿½
 		foreach($path_array as $key=>$value){
-			echo "¿ªÊ¼µ¼Èë{$value}Ä¿Â¼ÄÚÈÝ\r\n";
+			echo "ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½{$value}Ä¿Â¼ï¿½ï¿½ï¿½ï¿½\r\n";
 			$this->ergodic($key, $path . '/' . $value);
 		}
 	}
 
-	/** ½âÎö¸ùÄ¿Â¼ÏÂµÄREADMEÎÄ¼þ£¬µ¼ÈëÖ÷·ÖÀàÐÅÏ¢ **/
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½Âµï¿½READMEï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ **/
 	public function classify($Path){
-		echo "¿ªÊ¼´´½¨·ÖÀà£º\r\n";
+		echo "ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à£º\r\n";
 		DB::table('article_classify')->truncate();
-		$file = fopen($Path, "r") or exit('¶ÁÈ¡·ÖÀàÎÄ¼þÊ§°Ü');
+		$file = fopen($Path, "r") or exit('ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½ï¿½');
 		$classify_path = array();
 		while(!feof($file)){
-			//¶ÁÈ¡·ÖÀàÃû³Æ
+			//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			$conn = fgets($file);
 			$pattern = '/##(.*)-(.*)/i';
 			preg_match($pattern,$conn,$conn_pattern);
 			$name = $conn_pattern[1];
-			//¶ÁÈ¡·ÖÀàÃèÊö
+			//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			$describe = fgets($file);
 			$classify = new ArticleClassify();
 			$classify->article_classify_name = $name;
@@ -85,12 +85,12 @@ class LeadMarkdownCommand extends Command {
 			$classify_path[$classify->article_classify_id] = $conn_pattern[2];
 		}
 		fclose($file);
-		echo "µ¼Èë·ÖÀà³É¹¦£¡\r\n";
-		//·µ»ØÄ¿Â¼
+		echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½\r\n";
+		//ï¿½ï¿½ï¿½ï¿½Ä¿Â¼
 		return $classify_path;
 	}
 
-	/** ±éÀúÄ¿Â¼ÏÂµÄÄÚÈÝ **/
+	/** ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ **/
 	private function ergodic($article_classify_id, $Path){
 		$handle = opendir($Path);
 		while(($file = readdir($handle)) !== false){
@@ -101,15 +101,15 @@ class LeadMarkdownCommand extends Command {
 				$this->update_qiniu($Path . '/' . 'images');
 				continue;
 			}
-			//½«mdÎÄ¼þÐ´ÈëÊý¾Ý¿â
+			//ï¿½ï¿½mdï¿½Ä¼ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 			$this->md2db($article_classify_id, $Path . '/' . $file);
 		}
 		closedir($handle);
 	}
 
-	/** ÉÏ´«ÆßÅ£Í¼Æ¬ **/
+	/** ï¿½Ï´ï¿½ï¿½ï¿½Å£Í¼Æ¬ **/
 	private function update_qiniu($Path){
-		echo "·¢ÏÖ¸ÃÄ¿Â¼ÏÂ´æÔÚÍ¼Æ¬£¬ÉÏ´«µ½ÆßÅ£·þÎñÆ÷ÖÐ...\r\n";
+		echo "ï¿½ï¿½ï¿½Ö¸ï¿½Ä¿Â¼ï¿½Â´ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...\r\n";
 		$exist_num = 0;
 		$upload_num = 0;
 		$user = $this->user;
@@ -120,10 +120,10 @@ class LeadMarkdownCommand extends Command {
 					continue;
 				}
 				$file_name = $Path . '/' .$file;
-				//½«Í¼Æ¬ÉÏ´«µ½ÆßÅ£·þÎñÆ÷ÉÏ
+				//ï¿½ï¿½Í¼Æ¬ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				$disk = \Storage::disk('qiniu');
 				$qiniu_image_src = $this->qiniu_imgname($file_name);
-				//Èç¹ûÍ¼Æ¬´æÔÚ£¬ÔòÌø³ö¡£
+				//ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				if($disk->exists($qiniu_image_src)){
 					$exist_num++;
 					continue;
@@ -132,9 +132,9 @@ class LeadMarkdownCommand extends Command {
 				$contents = file_get_contents($file_name);
 
 				if($disk->put($qiniu_image_src, $contents)){
-					echo $file_name . "ÉÏ´«³É¹¦\r\n";
+					echo $file_name . "ï¿½Ï´ï¿½ï¿½É¹ï¿½\r\n";
 				}
-				//½«ÆßÅ£Í¼Æ¬µØÖ·Ð´µ½Êý¾Ý¿âÖÐ
+				//ï¿½ï¿½ï¿½ï¿½Å£Í¼Æ¬ï¿½ï¿½Ö·Ð´ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½
 				$album = Album::default_album($user);
 				$image = new AlbumImage();
 				$image->album_id = $album->album_id;
@@ -146,23 +146,23 @@ class LeadMarkdownCommand extends Command {
 			closedir($handle);
 		}
 		$total_num = $exist_num + $upload_num;
-		echo "Íê³ÉÉÏ´«£¬¹²ÉÏ´«{$upload_num}ÕÅÍ¼Æ¬£¬¸ÃÄ¿Â¼ÔÚÏßÉÏ¹²{$total_num}ÕÅÍ¼Æ¬\r\n";
+		echo "ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½{$upload_num}ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½ï¿½Ï¹ï¿½{$total_num}ï¿½ï¿½Í¼Æ¬\r\n";
 	}
 
-	/** ÉÏ´«µ½ÆßÅ£µÄÍ¼Æ¬£¬ÃüÃû¹æÔò **/
+	/** ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ **/
 	private function qiniu_imgname($file_name){
 		$path_info = pathinfo($file_name);
 		$explode = explode('/',$path_info['dirname']);
-		//Í¼Æ¬ËùÔÚÄ¿Â¼
+		//Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Ä¿Â¼
 		$path = $explode[count($explode)-2];
 		return 'fk_' . $path . '_' . md5($path_info['basename']) . '.' . $path_info['extension'];
 	}
 
-	/** ÓÃ»§µÇÂ¼ **/
+	/** ï¿½Ã»ï¿½ï¿½ï¿½Â¼ **/
 	private function login(){
 		do{
-			$name = $this->ask("Login username£º");
-			$password = $this->secret("{$name}'s password£º");
+			$name = $this->ask("Login usernameï¿½ï¿½");
+			$password = $this->secret("{$name}'s passwordï¿½ï¿½");
 			$user = User::with('adminuser')->where('user_name','=',$name)->get();
 			if(count($user)==0 || $user[0]->user_password != md5($password)){
 				echo "Permission denied, please try again.\r\n";
@@ -174,26 +174,21 @@ class LeadMarkdownCommand extends Command {
 				}
 			}
 		}while(true);
-		//ÓÃ»§ÐÅÏ¢
+		//ï¿½Ã»ï¿½ï¿½ï¿½Ï¢
 		return $user[0];
 	}
 
-//	/** ²âÊÔ **/
-//	public function fire(){
-//		$this->md2db('D:/laravel/laravelnote/phpnote/ËÑË÷ÒýÇæ»ù±¾Ô­Àí.md');
-//		//$this->md2db('D:/laravel/laravelnote/laravelnote/README.md');
-//	}
-	/** ½«mdµÄÄÚÈÝÐ´Èëµ½Êý¾Ý¿âÖÐ **/
+	/** ï¿½ï¿½mdï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ëµ½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ **/
 	private function md2db($article_classify_id , $file_name){
-		echo "¿ªÊ¼µ¼Èë{$file_name}==========>";
+		echo "ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½{$file_name}==========>";
 		$file_array = pathinfo($file_name);
-		//»ñÈ¡ÎÄÕÂ±êÌâ
-		$file = fopen($file_name, "r") or exit('¶ÁÈ¡·ÖÀàÎÄ¼þÊ§°Ü');
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½
+		$file = fopen($file_name, "r") or exit('ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½ï¿½');
 		$title = fgets($file);
 		$title = str_replace('#','',$title);
 		fclose($file);
 		$file_conn = file_get_contents($file_name);
-		//Æ¥ÅäÊÇ·ñ°ü»»±¾µØÍ¼Æ¬
+		//Æ¥ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
 		$pattern = '/\((\.\/images\/.*)\)/isU';
 		preg_match_all($pattern,$file_conn,$match);
 		if(count($match[1]) > 0) {
@@ -219,6 +214,6 @@ class LeadMarkdownCommand extends Command {
 		$article->created_at = filectime($file_name);
 		$article->updated_at = filemtime($file_name);
 		$article->save();
-		echo "µ¼Èë³É¹¦£¡\r\n";
+		echo "ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½\r\n";
 	}
 }
