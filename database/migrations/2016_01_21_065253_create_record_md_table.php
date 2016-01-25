@@ -16,9 +16,9 @@ class CreateRecordMdTable extends Migration {
 		{
 			$table->increments('record_md_id');
 			$table->integer('user_id');
-			$table->string('record_type',16);
-			$table->tinyInteger('record_status')->default(0);
-			$table->mediumText('record_remark');
+			$table->string('record_type',16);					//形式 1 导入 2更新
+			$table->tinyInteger('record_status')->default(0);	//状态 0 失败 1成功
+			$table->mediumText('record_remark');				//注释
 			$table->timestamp('created_at');
 		});
 	}
