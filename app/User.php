@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public $timestamps = true;
 
-	/** Óëadminuser¹ØÁª **/
+	/** ä¸adminuserå…³è” **/
 	public function adminuser(){
 		return $this->hasOne('App\AdminUser','user_id','user_id');
 	}

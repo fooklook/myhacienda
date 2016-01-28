@@ -1,0 +1,145 @@
+a{
+	border: 0px;
+}
+/* 导航主题颜色 */
+.navbar-blog{
+	background: rgba(255,255,255,0.4);
+    min-height: 80px;
+}
+.navbar-brand-blog{
+	font-size: 36px;
+	line-height: 80px;
+	color: #330000 ;
+}
+.navbar-nav li{
+	font-size: 20px;
+	line-height: 80px;
+	height: 80px;
+}
+	.navbar-nav li a{
+		font-size: 20px;
+		line-height: 50px;
+		color: #330000 ;
+	}
+	.navbar-nav li a:hover{
+		background-color:rgba(255,250,240,0.2); 
+		border-radius: 15px;
+	}
+.navbar-toggle{
+	background: rgba(255,255,255,0.4);
+	margin-top: 20px;
+	border-color: #330000 ;
+	color: #330000 ;
+}
+
+/* 单元显示 */
+.blog-item{
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	border-radius: 8px 8px 8px 8px;
+	margin-top:20px;
+}
+.blog-item:hover{
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+.blog-item .blog-img{
+	height: 200px;
+	overflow: hidden;
+	background-position: center center;
+	border-radius: 8px 8px 0px 0px;
+}
+	.blog-item .blog-img .blog-num{
+		background: rgba(102, 0, 51, 0.4);
+		color: #fff;
+		display: inline-block;
+		border-radius: 4px;
+		padding:4px;
+		margin:10px 16px;
+	}
+.blog-msg{
+	margin: 5px;
+	padding: 5px;
+	height: 80px;
+	text-indent: 2em;
+}
+.blog-append{
+	height: 40px;
+	padding-top: 10px;
+	border-top: 1px solid #DDDDDD;
+	overflow: hidden;
+	background-color: #f7faf8;
+	border-radius: 0px 0px 8px 8px;
+}
+	.blog-append div.blog-click{
+		padding-left: 20px;
+		display: inline-block;
+	}
+	.blog-append div.blog-look{
+		padding-right: 20px;
+		display: inline-block;
+		float: right;
+	}
+
+/* 尾部 */
+footer{
+	margin-top: 20px;
+}
+/* view 页面样式*/
+.tablecloth{
+	background-image: url(http://7xp3vm.com1.z0.glb.clouddn.com/bigbg-001.png);
+	background-color: #dfdfe1;
+}
+.blog-view-header{
+    max-width: 800px;
+    background: #fff none repeat scroll 0 0;
+    margin: 60px auto 40px;
+    overflow: hidden;
+    padding: 25px 30px;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+}
+	.blog-view-header .home{
+		font-size: 32px;
+	}
+		.blog-view-header .home .home-font{
+			font-size: 16px;
+			border-radius: 100%;
+		}
+	.blog-view-header .homelogo{
+
+	}
+		.blog-view-header .homelogo .logo-main{
+			display: inline-block;
+			float: left;
+		}
+
+		.blog-view-header .homelogo .logo-main-img{
+			width: 120px;
+			border-radius: 100px;
+		}
+		.blog-view-header .homelogo .logo-main-title{
+			font-size: 46px;
+			margin-left: 20px;
+		}
+		.blog-view-header .homelogo .logo-main-click{
+			margin-left: 24px;
+		}
+.blog-view-container{
+	max-width: 800px;
+	background: #fff none repeat scroll 0 0;
+    margin: 0 auto 40px;
+    overflow: hidden;
+    padding: 25px 30px;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+}
+	.blog-view-container .blog-view-body-img{
+		display: block;
+    	width: 100%;
+    	margin-bottom: 5px;
+	}
+
+/* 轮播图效果 */
+.swiper-container .swiper-wrapper{
+	max-height: 1010px;
+}
+.swiper-container .swiper-wrapper .swiper-slide img{
+	width:100%;
+}
