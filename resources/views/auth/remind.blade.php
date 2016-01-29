@@ -23,7 +23,7 @@
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
 </div>
-div class="main-container">
+<div class="main-container">
 <div class="main-box">
     <div class="input-box">
         <div class="box-container">
@@ -32,10 +32,10 @@ div class="main-container">
                 {{ $error }}
             @endforeach
             </p>
-            @if($pattern=1)
+            @if($pattern==1)
             <p class="returnindex"><a href="{{ url('/') }}">返回首页</a></p>
-            @elseif($pattern=2)
-            <p class="returnindex"><a href="{{ url('auth/login') }}">点击注册/登录</a></p>
+            @elseif($pattern==2)
+            <p class="returnindex"><a href="{{ url('auth/login') }}">点击登录/注册</a></p>
             @else
             <p class="returnindex"><a href="{{ url('/') }}">返回首页</a></p>
             @endif

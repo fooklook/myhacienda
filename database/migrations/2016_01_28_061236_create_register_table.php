@@ -21,7 +21,7 @@ class CreateRegisterTable extends Migration {
 			$table->string('user_token',10);					//注册验证码
 			$table->string('user_again_token',10);					//注册验证码
 			$table->tinyInteger('count')->default(1);						//发送邮件的次数
-			$table->tinyInteger('status')->default(0);				//注册状态 0为未验证，1为验证
+			$table->tinyInteger('status')->default(0);				//注册状态 0为未验证，1为验证，-1为邮件发送失败
 			$table->timestamps();
 		});
 	}

@@ -34,16 +34,27 @@
                 <a class="login-button onclick" href="javascript:void(0);">登录</a>
                 <a class="register-button" href="javascript:void(0);">注册</a>
             </div>
+            <?php
+            //获取错误信息
+            if(isset($errors)){
+                $remind = $errors->all();
+            }
+            ?>
             <div class="login-box box-container">
                 <form role="form" method="post" action="{{ url('/auth/login') }}" name="login">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="group-input">
-                        <input class="input-in" type="email" name="user_email" placeholder="邮箱地址" />
+                        <input class="input-in" type="email" name="user_email" value="{{ isset($remind['login'])?$user_email:"" }}" placeholder="邮箱地址" />
                     </div>
                     <div class="group-input">
-                        <input class="input-in" type="password" name="user_password" placeholder="密码" />
+                        <input class="input-in" type="password" name="user_password" value="{{ isset($remind['login'])?$user_password:"" }}" placeholder="密码" />
                         <a class="eye a-fa-eye" href="javascript:void(0);"><i class="fa fa-eye"></i></a>
                         <a class="eye a-fa-eye-slash" href="javascript:void(0);" style="display:none;"><i class="fa fa-eye-slash"></i></a>
+                    </div>
+                    <div class="group-input errors">
+                        @if(isset($remind['login']))
+                            {{ $remind['login'] }}
+                        @endif
                     </div>
                     <div class="group-button"><input type="submit" value="登录" name="submit_button" /></div>
                     <div class="group-input"><input type="checkbox" name="remember" />记住密码 <span class="forget"><a href="javascript:void(0);">忘记密码</a></span></div>
@@ -53,16 +64,21 @@
                 <form role="form" method="post" action="{{ url('/auth/register') }}" name="register">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="group-input">
-                        <input class="input-in" type="email" name="user_email" placeholder="注册邮箱地址" />
+                        <input class="input-in" type="email" name="user_email" value="{{ isset($remind['register'])?$user_email:"" }}" placeholder="注册邮箱地址" />
                     </div>
                     <div class="group-input">
-                        <input class="input-in" type="password" name="user_password" placeholder="注册密码" />
+                        <input class="input-in" type="password" name="user_password" value="{{ isset($remind['register'])?$user_password:"" }}" placeholder="注册密码" />
                         <a class="eye a-fa-eye" href="javascript:void(0);"><i class="fa fa-eye"></i></a>
                         <a class="eye a-fa-eye-slash" href="javascript:void(0);" style="display:none;"><i class="fa fa-eye-slash"></i></a>
                     </div>
+                    <div class="group-input errors">
+                        @if(isset($remind['register']))
+                            {{ $remind['register'] }}
+                        @endif
+                    </div>
                     <div class="group-code">
-                        <input class="input-in" type="password" name="" placeholder="验证码" />
-                        <span class="refresh"><span class="fa fa-refresh"></span><img src="{{ asset('images/code.png') }}" /></span>
+                        <input class="input-in" type="password" name="authcode" placeholder="验证码" />
+                        <span id="auth-code" class="refresh"><span class="fa fa-refresh"></span><img src="{{ url('auth/authcode') }}" /></span>
                     </div>
                     <div class="group-button"><input type="submit" value="注册" /></div>
                 </form>
@@ -93,6 +109,18 @@
         $("a.a-fa-eye-slash").click(function(){
             $(this).hide().siblings("a").show();
             $(this).siblings("input").attr('type','password');
+        });
+        //点击获取验证码
+        $("#auth-code").click(function(){
+            $(this).find('img').attr('src',$(this).find('img').attr('src')+"?code="+Math.random());
+        });
+        //判断显示，如果.errors存在内容，则该内框显示。
+        var index = 0;
+        $(".errors").each(function(){
+            if($.trim($(this).text()) != ""){
+                $(".button-group a:eq("+index+")").trigger("click");
+            }
+            index++;
         });
     });
     var swiper = new Swiper('.swiper-container', {

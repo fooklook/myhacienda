@@ -31,7 +31,7 @@ div class="main-container">
                 注册成功，等待邮箱验证。
             </p>
             <p class="returnindex"><a href="{{ url('/') }}">返回首页</a></p>
-            <a href="{{ url('auth/sendemail',array('email'=>$user_email,"_token"=>csrf_token())) }}">重新发送邮件(<span id="count_down">60</span>)</a>
+            <a href="{{ url('auth/sendemail',array('email'=>$user_email,"user_token"=>$register->user_again_token,"_token"=>csrf_token())) }}">重新发送邮件(<span id="count_down">60</span>)</a>
         </div>
     </div>
 </div>

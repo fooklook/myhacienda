@@ -18,7 +18,7 @@ trait LoginController {
 	 */
 	public function getLogin()
 	{
-		return view('auth.login');
+		return view('auth.login1');
 	}
 
 	/**

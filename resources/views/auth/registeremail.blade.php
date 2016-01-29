@@ -12,8 +12,8 @@
         <td valign="top" align="left" style="-moz-hyphens: none; -webkit-hyphens: none; border-collapse: collapse !important; color: #58595B; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: normal; hyphens: none; line-height: 19px; margin: 0; padding: 0px 0px 10px; text-align: left; vertical-align: top; word-break: break-word;">
             <p align="left" style="color: #58595B; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: normal; line-height: 19px; margin: 0 0 10px; padding: 0; text-align: left"> 欢迎加入FOOKLOOK！ </p>
             <p align="left" style="color: #58595B; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: normal; line-height: 19px; margin: 0 0 10px; padding: 0; text-align: left"> 您现在需要点击下方链接激活您的帐户，从而可以正式使用FOOKLOOK只对会员开放的功能。</p>
-            <p align="left" style="color: #58595B; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: normal; line-height: 19px; margin: 0 0 10px; padding: 0; text-align: left">
-                <a style="color: #4A99E2; text-decoration: none" href="{{ url('') }}" target="_blank">点击验证邮箱</a>
+            <p align="center" style="color: #58595B; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: normal; line-height: 19px; margin: 0 0 10px; padding: 0; text-align: left">
+                <a style="color: #4A99E2; text-decoration: none" href="{{ url("auto/validationemail/".md5($register->user_token)) }}" target="_blank">点击验证邮箱</a>
             </p>
         </td>
     </tr>

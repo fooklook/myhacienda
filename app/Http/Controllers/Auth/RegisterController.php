@@ -1,10 +1,13 @@
 <?php namespace App\Http\Controllers\Auth;
 
+use App\Commands\SendEmail;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 trait RegisterController {
 
@@ -22,15 +25,21 @@ trait RegisterController {
 	 */
 	public function postRegister(Request $request)
 	{
+		//检查验证码
+		if(Session::get('authcode') != $request->input('authcode')){
+			//邮箱已经被注册，返回注册页面。
+			return view('auth.login1',$request->only('user_email','user_password'))
+				->withErrors(array(
+					array('register'=>'验证码错误')
+				));
+		}
 		$infor = "";
 		if($this->register->run_register($request->only('user_email', 'user_password'),$infor)){
 			//进入跳转页面
-			return view('auto.remind',array('register'=>$this->register->register));
+			return view('auth.valemail',array('register'=>$this->register->register));
 		}else{
 			//邮箱已经被注册，返回注册页面。
-			return redirect('auto.login1')
-				->withInput($request->only('user_email', 'user_password'))
-				->withInput(array('page'=>'register'))
+			return view('auth.remind',array('pattern'=>2))
 				->withErrors([
 					'register_error' => $infor,
 				]);
@@ -45,10 +54,20 @@ trait RegisterController {
 	}
 
 	/**
-	 * 发送邮件测试
+	 * 再次发送邮箱验证
 	 */
-	public function getSeedmail(){
+	public function getAgainemail(){
+		Bus::dispatch(new SendEmail());
 
 	}
+	/**
+	 * 提示页面
+	 *
+	 */
+	public function getRemind(){
+
+	}
+
+
 
 }
