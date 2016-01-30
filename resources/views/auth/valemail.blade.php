@@ -28,6 +28,7 @@ div class="main-container">
     <div class="input-box">
         <div class="box-container">
             <p class="remind">
+                {{ $register->user_email }}<br />
                 注册成功，等待邮箱验证。
             </p>
             <p class="returnindex"><a href="{{ url('/') }}">返回首页</a></p>

@@ -33,6 +33,14 @@ trait RegisterController {
 					array('register'=>'验证码错误')
 				));
 		}
+		//检查邮箱地址格式
+		if($request->input('user_mail')){
+			//邮箱已经被注册，返回注册页面。
+			return view('auth.login1',$request->only('user_email','user_password'))
+				->withErrors(array(
+					array('register'=>'验证码错误')
+				));
+		}
 		$infor = "";
 		if($this->register->run_register($request->only('user_email', 'user_password'),$infor)){
 			//进入跳转页面

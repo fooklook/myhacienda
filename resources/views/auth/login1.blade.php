@@ -41,13 +41,13 @@
             }
             ?>
             <div class="login-box box-container">
-                <form role="form" method="post" action="{{ url('/auth/login') }}" name="login">
+                <form role="form" method="post" action="{{ url('/auth/login') }}" name="login" id="login">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="group-input">
-                        <input class="input-in" type="email" name="user_email" value="{{ isset($remind['login'])?$user_email:"" }}" placeholder="邮箱地址" />
+                        <input class="input-in" type="email" name="user_email" value="{{ isset($remind['login'])?$user_email:"" }}" placeholder="邮箱地址" datatype="e" errormsg="邮箱地址格式错误！" nullmsg="请输入邮件地址。" />
                     </div>
                     <div class="group-input">
-                        <input class="input-in" type="password" name="user_password" value="{{ isset($remind['login'])?$user_password:"" }}" placeholder="密码" />
+                        <input class="input-in" type="password" name="user_password" value="{{ isset($remind['login'])?$user_password:"" }}" placeholder="密码" datatype="*6-18" errormsg="密码长度为6-18位。" nullmsg="请输入6-18位密码。" />
                         <a class="eye a-fa-eye" href="javascript:void(0);"><i class="fa fa-eye"></i></a>
                         <a class="eye a-fa-eye-slash" href="javascript:void(0);" style="display:none;"><i class="fa fa-eye-slash"></i></a>
                     </div>
@@ -56,31 +56,31 @@
                             {{ $remind['login'] }}
                         @endif
                     </div>
-                    <div class="group-button"><input type="submit" value="登录" name="submit_button" /></div>
+                    <div class="group-button"><input type="submit" value="登录" name="submit_button" id="login_sub" /></div>
                     <div class="group-input"><input type="checkbox" name="remember" />记住密码 <span class="forget"><a href="javascript:void(0);">忘记密码</a></span></div>
                 </form>
             </div>
             <div class="register-box box-container" style="display:none;">
-                <form role="form" method="post" action="{{ url('/auth/register') }}" name="register">
+                <form role="form" method="post" action="{{ url('/auth/register') }}" name="register" id="register">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="group-input">
-                        <input class="input-in" type="email" name="user_email" value="{{ isset($remind['register'])?$user_email:"" }}" placeholder="注册邮箱地址" />
+                        <input class="input-in" type="email" name="user_email" value="{{ isset($remind['register'])?$user_email:"" }}" placeholder="注册邮箱地址" datatype="e" errormsg="邮箱地址格式错误！" nullmsg="请输入邮件地址。"/>
                     </div>
                     <div class="group-input">
-                        <input class="input-in" type="password" name="user_password" value="{{ isset($remind['register'])?$user_password:"" }}" placeholder="注册密码" />
+                        <input class="input-in" type="password" name="user_password" value="{{ isset($remind['register'])?$user_password:"" }}" placeholder="注册密码" datatype="*6-18" errormsg="密码长度为6-18位。" nullmsg="请输入6-18位密码。"/>
                         <a class="eye a-fa-eye" href="javascript:void(0);"><i class="fa fa-eye"></i></a>
                         <a class="eye a-fa-eye-slash" href="javascript:void(0);" style="display:none;"><i class="fa fa-eye-slash"></i></a>
+                    </div>
+                    <div class="group-code">
+                        <input class="input-in" type="password" name="authcode" placeholder="验证码" datatype="*4-6" errormsg="请输入验证码。" nullmsg="请输入验证码。" />
+                        <span id="auth-code" class="refresh"><span class="fa fa-refresh"></span><img src="http://fooklook.net/auth/authcode" /></span>
                     </div>
                     <div class="group-input errors">
                         @if(isset($remind['register']))
                             {{ $remind['register'] }}
                         @endif
                     </div>
-                    <div class="group-code">
-                        <input class="input-in" type="password" name="authcode" placeholder="验证码" />
-                        <span id="auth-code" class="refresh"><span class="fa fa-refresh"></span><img src="{{ url('auth/authcode') }}" /></span>
-                    </div>
-                    <div class="group-button"><input type="submit" value="注册" /></div>
+                    <div class="group-button"><input type="submit" value="注册"  id="register_sub"/></div>
                 </form>
             </div>
         </div>
@@ -90,6 +90,7 @@
 <!-- Swiper JS -->
 <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/swiper/swiper-3.3.0.jquery.min.js') }}"></script>
+<script src="{{ asset('assets/Validform/Validform_v5.3.2_min.js') }}"></script>
 
 <!-- Initialize Swiper -->
 <script>
@@ -122,6 +123,22 @@
             }
             index++;
         });
+    });
+    $("#register").Validform({
+        btnSubmit:"#register_sub",
+        tiptype:function(msg,o,cssctl){
+            if(o.type ==3){
+                o.curform.find('.errors').text(msg);
+            }
+        }
+    });
+    $("#login").Validform({
+        btnSubmit:"#login_sub",
+        tiptype:function(msg,o,cssctl){
+            if(o.type ==3){
+                o.curform.find('.errors').text(msg);
+            }
+        }
     });
     var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
