@@ -23,7 +23,7 @@
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
 </div>
-div class="main-container">
+<div class="main-container">
 <div class="main-box">
     <div class="input-box">
         <div class="box-container">
@@ -32,7 +32,7 @@ div class="main-container">
                 注册成功，等待邮箱验证。
             </p>
             <p class="returnindex"><a href="{{ url('/') }}">返回首页</a></p>
-            <a href="{{ url('auth/sendemail',array('email'=>$user_email,"user_token"=>$register->user_again_token,"_token"=>csrf_token())) }}">重新发送邮件(<span id="count_down">60</span>)</a>
+            <a id="again_email" href="javascript:void(0);">重新发送邮件(<span id="count_down">60</span>)</a>
         </div>
     </div>
 </div>
@@ -49,6 +49,28 @@ div class="main-container">
         paginationClickable: true,
         autoplay: 5000,//可选选项，自动滑动
         loop : true,
+    });
+    //发送邮件倒计时
+    setInterval(function(){
+        if($("#count_down").text() > 0) {
+            $("#count_down").text(parseInt($("#count_down").text()) - 1);
+        }
+    },900);
+    //再次发送邮件
+    $("#again_email").click(function(){
+        if($("#count_down").text()<=0){
+            $("#count_down").text(0);
+            $.post("{{ url('auth/againemail') }}",
+                    {
+                        "_token" : "{{ csrf_token() }}",
+                        "user_again_token" : "{{ $register->user_again_token }}"
+                    },
+                    function(data,status){
+                        console.log(data);
+
+                    }
+            );
+        }
     });
 </script>
 </body>

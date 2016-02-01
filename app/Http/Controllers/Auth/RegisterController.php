@@ -4,6 +4,7 @@ use App\Commands\SendEmail;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Register;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Mail;
@@ -25,16 +26,25 @@ trait RegisterController {
 	 */
 	public function postRegister(Request $request)
 	{
+		//检查邮箱地址格式
+		$pattern = "/^[_.0-9a-z-]+@([0-9a-z][0-9a-z-]+.)+[a-z]{2,3}$/";
+		if(!preg_match($pattern,$request->input("user_email"))){
+			return view('auth.login1',$request->only('user_email', 'user_password'))
+				->withErrors( array(
+					array('register'=>'请输入正确的邮箱地址！')
+					)
+				);
+		}
+		//验证密码格式
+		if(strlen($request->input("user_password"))<6 || strlen($request->input("user_password"))>18){
+			return view('auth.login1',$request->only('user_email', 'user_password'))
+				->withErrors( array(
+						array('register'=>'请输入6-18位密码!')
+					)
+				);
+		}
 		//检查验证码
 		if(Session::get('authcode') != $request->input('authcode')){
-			//邮箱已经被注册，返回注册页面。
-			return view('auth.login1',$request->only('user_email','user_password'))
-				->withErrors(array(
-					array('register'=>'验证码错误')
-				));
-		}
-		//检查邮箱地址格式
-		if($request->input('user_mail')){
 			//邮箱已经被注册，返回注册页面。
 			return view('auth.login1',$request->only('user_email','user_password'))
 				->withErrors(array(
@@ -64,8 +74,12 @@ trait RegisterController {
 	/**
 	 * 再次发送邮箱验证
 	 */
-	public function getAgainemail(){
-		Bus::dispatch(new SendEmail());
+	public function postAgainemail(Request $request){
+
+		$register = Register::where(array("user_again_token"=>$request->input('user_again_token')))
+							->where("status",0)
+							->where("count","<=",3)
+							->first();
 
 	}
 	/**

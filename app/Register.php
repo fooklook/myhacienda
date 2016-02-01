@@ -21,6 +21,7 @@ class Register extends Model {
      * 验证注册信息，并保存注册信息。
      */
     public function run_register($request, &$infor){
+
         //判断邮箱是否已经注册
         $user = User::where('user_email', $request["user_email"])->first();
         if(!is_null($user)){
@@ -70,8 +71,9 @@ class Register extends Model {
      */
     public function sendmail($register){
         //发送邮件
-        return Mail::send('auth.registeremail', ['register'=>$register], function($message) use($register){
-            $message->to($register->user_email)->subject('邮箱验证-Fooklook');
-        });
+//        return Mail::send('auth.registeremail', ['register'=>$register], function($message) use($register){
+//            $message->to($register->user_email)->subject('邮箱验证-Fooklook');
+//        });
+        return true;
     }
 }
