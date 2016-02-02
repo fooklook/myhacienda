@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Lib\Apidata;
 use App\Register;
 use Illuminate\Contracts\Auth\Guard;
 use Gregwar\Captcha\CaptchaBuilder;
@@ -15,6 +16,7 @@ class AuthController extends Controller {
 	*/
 	use RegisterController;
 	use LoginController;
+	use Apidata;
 
 	//错误信息
 	protected $error;

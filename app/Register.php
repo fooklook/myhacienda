@@ -43,7 +43,7 @@ class Register extends Model {
             return true;
         }else{
             $this->register->status = -1;
-            $this->save();
+            $this->register->save();
             $infor = "邮件发送失败！管理员解决该问题后，会主动联系你。";
             return false;
         }
@@ -53,16 +53,34 @@ class Register extends Model {
      * 再次发送邮件验证请求
      * @param string $again_token 再次发送邮件的token
      */
-    public function again_email($again_token, &$infor){
-        $this->register = Register::where('user_again_token',$again_token)->first();
-        //发送验证邮件
-        if($this->sendmail($this->register)) {
-            return true;
+    public static function again_email($again_token, &$infor){
+        $register = Register::where(array("user_again_token"=>$again_token))->first();
+        //未找到
+        if(is_null($register)){
+            $infor = "注册信息未找到，请注册后尝试。";
         }else{
-            $this->register->status = -1;
-            $this->save();
-            $infor = "邮件发送失败！管理员解决该问题后，会主动联系你。";
-            return false;
+            if($register->status == 1){
+                $infor = "邮箱已经验证成功！请返回首页。";
+                return false;
+            }else{
+                if($register->count>=3){
+                    $infor = "验证邮件已经发往您的邮箱，请耐心等待。";
+                    return false;
+                }else{
+                    if($register->sendmail($register)){
+                        $register->count = $register->count + 1;
+                        $register->status = 0;
+                        $register->save();
+                        $infor = "邮件发送成功！";
+                        return true;
+                    }else{
+                        $infor = "邮件发送失败！管理员解决该问题后，会主动联系你。";
+                        $register->status = -1;
+                        $register->save();
+                        return false;
+                    }
+                }
+            }
         }
     }
     /**

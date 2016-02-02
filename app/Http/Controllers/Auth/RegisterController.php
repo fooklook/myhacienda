@@ -75,11 +75,14 @@ trait RegisterController {
 	 * 再次发送邮箱验证
 	 */
 	public function postAgainemail(Request $request){
+		if(Register::again_email($request->only('user_again_token'),$infor)){
+			$this->data['status'] = 1;
+			$this->data['msg'] = $infor;
+			echo json_encode($this->data);
+			return true;
+		}else{
 
-		$register = Register::where(array("user_again_token"=>$request->input('user_again_token')))
-							->where("status",0)
-							->where("count","<=",3)
-							->first();
+		}
 
 	}
 	/**
