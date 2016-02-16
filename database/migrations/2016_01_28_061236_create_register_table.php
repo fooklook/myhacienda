@@ -15,8 +15,8 @@ class CreateRegisterTable extends Migration {
 		Schema::create('register', function(Blueprint $table)
 		{
 			$table->increments('register_id');
-			$table->string('user_email')->unique();				//注册邮箱
-			$table->string('user_phone',11)->unique();			//手机号码
+			$table->string('user_email');				//注册邮箱
+			$table->string('user_phone',11);			//手机号码
 			$table->string('user_password');					//注册密码
 			$table->string('user_token',10);					//注册验证码
 			$table->string('user_again_token',10);					//注册验证码

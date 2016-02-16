@@ -36,6 +36,7 @@ class Register extends Model {
         $this->register->user_token = Myhelper::getRandChar(10);
         $this->register->user_again_token = Myhelper::getRandChar(10);
         if(!$this->register->save()){
+            $infor = '';
             return false;
         }
         //发送验证邮件

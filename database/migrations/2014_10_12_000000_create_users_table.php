@@ -15,12 +15,13 @@ class CreateUsersTable extends Migration {
 		Schema::create('user', function(Blueprint $table)
 		{
 			$table->increments('user_id');
-			$table->string('user_avatars')->default('/aravats.jpg');		//ÓÃ»§Í·Ïñ
-			$table->string('user_name',60)->unique();						//ÓÃ»§Ãû
-			$table->string('user_nickname',60)->unique();					//ÓÃ»§êÇ³Æ
-			$table->string('user_email',60)->unique();						//ÓÃ»§ÓÊÏäµØÖ·
-			$table->string('user_password', 60);							//ÓÃ»§ÃÜÂë£¬¸ÄÎªmd5¼ÓÃÜ
-			$table->string('login_ip',16);									//µÇÂ¼ipµØÖ·
+			$table->string('user_avatars')->default('/aravats.jpg');		//ï¿½Ã»ï¿½Í·ï¿½ï¿½
+			$table->string('user_name',60)->unique();						//ï¿½Ã»ï¿½ï¿½ï¿½
+			$table->string('user_nickname',60)->unique();					//ï¿½Ã»ï¿½ï¿½Ç³ï¿½
+			$table->string('user_email',60);						//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
+			$table->string('user_phone',11);
+			$table->string('user_password', 60);							//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½Îªmd5ï¿½ï¿½ï¿½ï¿½
+			$table->string('login_ip',16);									//ï¿½ï¿½Â¼ipï¿½ï¿½Ö·
 			$table->rememberToken();										//token
 			$table->timestamps();
 		});
