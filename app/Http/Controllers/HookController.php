@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class HookController extends Controller {
 
 	public function storeEvents(Request $request) {
-		$event_name = $request->header('X-Github-Event');
+		echo $event_name = $request->header('X-Github-Event');
 		$body = json_encode(Input::all());
 
 		$hook = new Hook;
@@ -17,7 +17,7 @@ class HookController extends Controller {
 
 		$hook->save();
 
-		return "";// 200 OK
+		return "ok";// 200 OK
 	}
 
 }
