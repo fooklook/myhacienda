@@ -13,5 +13,6 @@ Route::get('test',function(){
 	\Illuminate\Support\Facades\Auth::loginUsingId(1);
 	dd(\Illuminate\Support\Facades\Auth::user()->adminuser);
 });
+
 Route::post("github", "HookController@storeEvents");
 
