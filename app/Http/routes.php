@@ -16,6 +16,6 @@ Route::get('test',function(){
 });
 Route::post("github", "HookController@storeEvents");
 Route::post("push",function(){
-	return true;
+	return 123;
 });
 
