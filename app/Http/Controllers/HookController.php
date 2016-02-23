@@ -10,15 +10,10 @@ use Illuminate\Support\Facades\Input;
 class HookController extends Controller {
 
 	public function storeEvents(Request $request) {
-		$event_name = $request->header('X-Github-Event');
-		$body = json_encode(Input::all());
-		var_dump($body);
-
-		$hook = new Hook();
-		$hook->event_name = $event_name;
-		$hook->payload = $body;
-
-		$hook->save();
+		$event_name = $request->header('X-Hub-Signature');
+		var_dump($event_name);
+		var_dump(Input::all());
+		$body = Input::all();
 
 		return "ok";// 200 OK
 	}

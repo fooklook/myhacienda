@@ -15,7 +15,5 @@ Route::get('test',function(){
 	dd(\Illuminate\Support\Facades\Auth::user()->adminuser);
 });
 Route::post("github", "HookController@storeEvents");
-Route::post("push",function(){
-	return 123;
-});
+Route::post("push","HookController@storeEvents");
 

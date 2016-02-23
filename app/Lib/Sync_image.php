@@ -9,7 +9,7 @@
 namespace App\Lib;
 
 
-class Sync_image
+class Sync_image extends Sync_file
 {
 
 }
