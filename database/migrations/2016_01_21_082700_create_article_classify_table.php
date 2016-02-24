@@ -16,6 +16,7 @@ class CreateArticleClassifyTable extends Migration {
 		{
 			$table->increments('article_classify_id');
 			$table->string('article_classify_name',60)->unique();
+			$table->string('article_classify_path',60);
 			$table->mediumText('article_classify_describe');
 			$table->integer('article_classify_trunk_id');
 			$table->timestamp('created_at');

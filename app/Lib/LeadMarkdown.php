@@ -6,6 +6,7 @@ use App\Article;
 use App\ArticleClassify;
 use App\RecordMd;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class LeadMarkdown {
 
@@ -25,7 +26,7 @@ class LeadMarkdown {
      * 遍历目录，生成类别并将项目md内容导入到数据库中
      * @param string $path 需要导入的根目录
      */
-    public function action_leadin($path){
+    public function leadin($path){
         //读取根目录的README.md文件，创建分类，并获取目录信息。
         echo "reading README\r\n";
         $path_array = $this->classify($path . '/' .'README.md');
@@ -66,10 +67,12 @@ class LeadMarkdown {
             $pattern = '/##(.*)-(.*)/i';
             preg_match($pattern,$conn,$conn_pattern);
             $name = $conn_pattern[1];
+            $path = $conn_pattern[2];
             //回去分类说明
             $describe = fgets($file);
             $classify = new ArticleClassify();
             $classify->article_classify_name = $name;
+            $classify->article_classify_path = $path;
             $classify->article_classify_describe = $describe;
             $classify->article_classify_trunk_id = 1;
             $classify->created_at = \Carbon\Carbon::now();
@@ -133,12 +136,15 @@ class LeadMarkdown {
                 if($disk->put($qiniu_image_src, $contents)){
                     echo $file_name . "====>upload\r\n";
                 }
+                //获取图片后缀
+                $explode = explode('.',$file_name);
+                $ext = strtolower(end($explode));
                 //写入到相册中
                 $album = Album::default_album($user);
                 $image = new AlbumImage();
                 $image->album_id = $album->album_id;
                 $image->image_src = 'http://' . env('QINIU_DOMAINS_DEFAULT') . '/' .$qiniu_image_src;
-                $image->image_type = pathinfo($file_name)['extension'];
+                $image->image_type = $ext;
                 $image->created_at = \Carbon\Carbon::now();
                 $image->save();
             }
@@ -158,7 +164,7 @@ class LeadMarkdown {
         $explode = explode('/',$path_info['dirname']);
         //目录名称
         $path = $explode[count($explode)-2];
-        return 'fk_' . $path . '_' . md5($path_info['basename']) . '.' . $path_info['extension'];
+        return env('QINIU_PREFIX') . $path . '_' . md5($path_info['basename']) . '.' . $path_info['extension'];
     }
 
     /**

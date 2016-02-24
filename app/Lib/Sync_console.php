@@ -1,6 +1,7 @@
 <?php
 namespace App\Lib;
 
+use App\Lib\Sync_file;
 use App\Lib\Sync_md;
 use App\Lib\Sync_image;
 use App\User;
@@ -30,16 +31,18 @@ class Sync_console
     /**
      * 初始化
      */
-    public function __construct(Request $request){
-        //初始化验证Secret合法性。
-        if(!$this->VerifySignature($request->header('X-Hub-Signature'))){
-            $this->valid = false;
-            $this->error = "Secret错误";
-            return false;
+    public function __construct($request){
+        //验证配置信息
+        if(is_null(env('GITHUB_USERNAME')) || is_null(env('GITHUB_REPOSITORY')) || is_null(env('GITHUB_SECRET'))){
+            dd("请在.env文件中，填写github相关信息。");
         }
+        //初始化验证Secret合法性。
+//        if(!$this->VerifySignature($request->header('X-Hub-Signature'))){
+//            dd("Secret错误");
+//            return false;
+//        }
         $body = Input::all();
         $this->commits = $body["commits"];
-        $this->api_url();
         return true;
     }
 
@@ -66,7 +69,7 @@ class Sync_console
      */
 
     private function VerifyUser($email){
-        $user = User::where('user_email',$email)->frist();
+        $user = User::where('user_email',$email)->first();
         if(is_null($user)){
             //未找到用户
             return false;
@@ -90,14 +93,23 @@ class Sync_console
         foreach($this->commits as $commit) {
             //验证用户信息
             if (!$this->VerifyUser($commit["author"]["email"])) {
-                $this->valid = false;
-                $this->error = "用户不存在";
+                dd("用户不存在");
                 return false;
             }
-
-            //新增文章
+            //新增
             foreach ($commit["added"] AS $addad){
-
+                $sync_file = Sync_file::instantiate($addad,$this->user);
+                $sync_file->added($addad);
+            }
+            //删除
+            foreach ($commit["removed"] AS $removed){
+                $sync_file = Sync_file::instantiate($removed,$this->user);
+                $sync_file->removed($removed);
+            }
+            //修改
+            foreach ($commit["modified"] AS $modified){
+                $sync_file = Sync_file::instantiate($modified,$this->user);
+                $sync_file->modified($modified);
             }
         }
     }
