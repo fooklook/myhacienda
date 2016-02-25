@@ -13,6 +13,7 @@ class HookController extends Controller {
 	public function storeEvents(Request $request) {
 		$sync = new Sync_console($request);
 		$sync->action();
+		return 'ok';
 	}
 
 }
