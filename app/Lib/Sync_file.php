@@ -29,6 +29,7 @@ class Sync_file
         $explode = explode('.',$filename);
         $extend = end($explode);
         foreach(self::$extend AS $type=>$extends){
+            
             if(in_array($extend, $extends)){
                 $type = __NAMESPACE__ . "\\" . $type;
                 $sync = new $type($user);
