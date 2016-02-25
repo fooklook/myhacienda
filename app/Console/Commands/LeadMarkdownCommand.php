@@ -41,7 +41,7 @@ class LeadMarkdownCommand extends Command {
 		//初始化项目
 		$lead = new LeadMarkdown($user);
 		//遍历的文件目录
-		$path = 'D:/laravel/laravelnote';
+		$path = env('MARKDOWN_URL');
 		$lead->leadin($path);
 	}
 
