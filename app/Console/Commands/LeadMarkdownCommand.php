@@ -50,17 +50,17 @@ class LeadMarkdownCommand extends Command {
 		do{
 			$name = $this->ask("Login username:");
 			$password = $this->secret("{$name}'s password:");
-			$user = User::with('adminuser')->where('user_name','=',$name)->get();
-			if(count($user)==0 || $user[0]->user_password != md5($password)){
+			$user = User::with('adminuser')->where('user_name','=',$name)->first();
+			if(is_null($user) || $user->user_password != md5($password)){
 				echo "Permission denied, please try again.\r\n";
 			}else {
-				if ($user[0]->adminuser->user_power == 7) {
+				if ($user->adminuser->user_power == 7) {
 					break;
 				} else {
 					echo "Not enough permissions.";
 				}
 			}
 		}while(true);
-		return $user[0];
+		return 'ok';
 	}
 }

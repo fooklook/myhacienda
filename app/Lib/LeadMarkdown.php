@@ -176,9 +176,11 @@ class LeadMarkdown {
         echo "{$file_name}==========>";
         $file_array = pathinfo($file_name);
         $file = fopen($file_name, "r") or exit("can'n read $file_name");
-        $title = fgets($file);
-        $title = str_replace('#','',$title);
-        fclose($file);
+        //获取标题
+        $title_explode = explode(".",$file_array['basename']);
+        $title = reset($title_explode);
+        $title = iconv('GBK',"UTF-8//IGNORE",$title);
+        //获取内容
         $file_conn = file_get_contents($file_name);
         //匹配本地图片地址
         $pattern = '/\((\.\/images\/.*)\)/isU';
@@ -216,61 +218,5 @@ class LeadMarkdown {
             $this->wait_article[] = $article->article_id;
         }
         echo "Write to successful\r\n";
-    }
-
-    /**
-     * github上发生push，对内容进行同步。
-     * @param string $json github返回的内容
-     */
-    public function action_push($json){
-
-    }
-    /**
-     * md文件内容写入到数据库中
-     * @param $article_classify_id
-     * @param $file_name
-     */
-    private function push2db($article_classify_id , $file_name){
-        $file_array = pathinfo($file_name);
-        $file = fopen($file_name, "r") or exit("can'n read $file_name");
-        $title = fgets($file);
-        $title = str_replace('#','',$title);
-        fclose($file);
-        $file_conn = file_get_contents($file_name);
-        //匹配本地图片地址
-        $pattern = '/\((\.\/images\/.*)\)/isU';
-        preg_match_all($pattern,$file_conn,$match);
-        if(count($match[1]) > 0) {
-            $replace = array();
-            foreach ($match[1] as $value) {
-                $tmp = explode("/", $value);
-                $replace[] = 'http://' . env('QINIU_DOMAINS_DEFAULT') . '/' . $this->qiniu_imgname($file_array['dirname'] . 'images' . $tmp[(count($tmp) - 1)]);
-            }
-            $file_conn = str_replace($match[1], $replace, $file_conn);
-        }
-
-        $article = Article::where('article_title','=',$title)->first();
-        if(is_null($article)){
-            $article = new Article();
-        }
-        $article->conn_type_id = 2;
-        $article->user_id = 1;
-        $article->article_classify_id = $article_classify_id;
-        $article->article_title = $title;
-        $article->article_digest = "";
-        $article->article_cover = "";
-        $article->article_content = $file_conn;
-        $article->article_from = "fooklook";
-        $article->article_status = 1;
-        $article->created_at = filectime($file_name);
-        $article->updated_at = filemtime($file_name);
-        $article->save();
-        //匹配内容中的本地文章链接
-        $pattern = '/\((\.\/)?([^\/]*)\.md\)/is';
-        preg_match_all($pattern,$file_conn,$match);
-//		dd($match);
-        if(count($match[0])>0){
-            $this->wait_article[] = $article->article_id;
-        }
     }
 }

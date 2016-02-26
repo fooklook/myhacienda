@@ -1,5 +1,7 @@
 <?php namespace App\Providers;
 
+use App\Article;
+use App\ArticleClassify;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,7 +25,21 @@ class RouteServiceProvider extends ServiceProvider {
 	public function boot(Router $router)
 	{
 		parent::boot($router);
-
+		$router->bind('classify',function($classify){
+			$ArticleClass = ArticleClassify::where('article_classify_path',$classify)->first();
+			var_dump($ArticleClass);
+			if(is_null($ArticleClass)){
+				$ArticleClass = false;
+			}
+			return $ArticleClass;
+		});
+		$router->bind('name',function($name){
+			$Article = Article::where('article_title','like',$name."%")->first();
+			if(is_null($Article)){
+				$Article = false;
+			}
+			return $Article;
+		});
 		//
 	}
 
