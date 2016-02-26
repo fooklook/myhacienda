@@ -61,6 +61,6 @@ class LeadMarkdownCommand extends Command {
 				}
 			}
 		}while(true);
-		return 'ok';
+		return $user;
 	}
 }

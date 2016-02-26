@@ -115,7 +115,6 @@ class LeadMarkdown {
         echo "Find images file，uploading...\r\n";
         $exist_num = 0;
         $upload_num = 0;
-        $user = $this->user;
         $handle = opendir($Path);
         if($handle){
             while(($file=readdir($handle)) !== false){
@@ -144,7 +143,7 @@ class LeadMarkdown {
                     $explode = explode('.', $file_name);
                     $ext = strtolower(end($explode));
                     //写入到相册中
-                    $album = Album::default_album($user);
+                    $album = Album::default_album($this->user);
                     $image = new AlbumImage();
                     $image->album_id = $album->album_id;
                     $image->image_src = $qiniu_url;
