@@ -6,8 +6,10 @@
 2. 数据库初始化
 
 ```shell
+//mysql创建数据库
+CREATE DATABASE myhacienda DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 //生成表
 php artisan migrate
 //填充数据
-php artisan seed
+php artisan db:seed
 ```

@@ -179,7 +179,13 @@ class LeadMarkdown {
         //获取标题
         $title_explode = explode(".",$file_array['basename']);
         $title = reset($title_explode);
-        $title = iconv('GBK',"UTF-8//IGNORE",$title);
+        $charset = mb_detect_encoding($title,array('UTF-8','GBK','GB2312'));
+        if($charset == 'cp936'){
+            $charset='GBK';
+        }
+        if("utf-8" != $charset){
+            $title = iconv($charset,"UTF-8//IGNORE",$title);
+        }
         //获取内容
         $file_conn = file_get_contents($file_name);
         //匹配本地图片地址
