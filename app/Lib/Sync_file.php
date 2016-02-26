@@ -18,9 +18,10 @@ class Sync_file
     );
 
     /**
-     * 初始化项目
+     * 返回文件对象
      * @param string $filename 文件地址
      * @param User $user        用户信息
+     * @return object
      */
 
     public static function instantiate($filename, $user){
@@ -29,8 +30,7 @@ class Sync_file
         $explode = explode('.',$filename);
         $extend = end($explode);
         foreach(self::$extend AS $type=>$extends){
-            
-            if(in_array($extend, $extends)){
+            if(in_array(strtolower($extend), $extends)){
                 $type = __NAMESPACE__ . "\\" . $type;
                 $sync = new $type($user);
                 return $sync;
