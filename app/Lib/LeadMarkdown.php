@@ -128,25 +128,30 @@ class LeadMarkdown {
                 //判断是否已经上传图片
                 if($disk->exists($qiniu_image_src)){
                     $exist_num++;
-                    continue;
-                }
-                $upload_num++;
-                $contents = file_get_contents($file_name);
+                }else {
+                    $upload_num++;
+                    $contents = file_get_contents($file_name);
 
-                if($disk->put($qiniu_image_src, $contents)){
-                    echo $file_name . "====>upload\r\n";
+                    if ($disk->put($qiniu_image_src, $contents)) {
+                        echo $file_name . "====>upload\r\n";
+                    }
                 }
-                //获取图片后缀
-                $explode = explode('.',$file_name);
-                $ext = strtolower(end($explode));
-                //写入到相册中
-                $album = Album::default_album($user);
-                $image = new AlbumImage();
-                $image->album_id = $album->album_id;
-                $image->image_src = 'http://' . env('QINIU_DOMAINS_DEFAULT') . '/' .$qiniu_image_src;
-                $image->image_type = $ext;
-                $image->created_at = \Carbon\Carbon::now();
-                $image->save();
+                //判断图片是否入库
+                $qiniu_url = 'http://' . env('QINIU_DOMAINS_DEFAULT') . '/' . $qiniu_image_src;
+                $image = AlbumImage::where('image_src',$qiniu_url)->first();
+                if(is_null($image)) {
+                    //获取图片后缀
+                    $explode = explode('.', $file_name);
+                    $ext = strtolower(end($explode));
+                    //写入到相册中
+                    $album = Album::default_album($user);
+                    $image = new AlbumImage();
+                    $image->album_id = $album->album_id;
+                    $image->image_src = $qiniu_url;
+                    $image->image_type = $ext;
+                    $image->created_at = \Carbon\Carbon::now();
+                    $image->save();
+                }
             }
             closedir($handle);
         }
