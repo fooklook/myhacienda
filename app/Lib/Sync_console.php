@@ -98,25 +98,16 @@ class Sync_console
             }
             //新增
             foreach ($commit["added"] AS $addad){
-                if($addad == "master"){
-                    continue;
-                }
                 $sync_file = Sync_file::instantiate($addad,$this->user);
                 $sync_file->added($addad);
             }
             //删除
             foreach ($commit["removed"] AS $removed){
-                if($removed == "master"){
-                    continue;
-                }
                 $sync_file = Sync_file::instantiate($removed,$this->user);
                 $sync_file->removed($removed);
             }
             //修改
             foreach ($commit["modified"] AS $modified){
-                if($modified == "master"){
-                    continue;
-                }
                 $sync_file = Sync_file::instantiate($modified,$this->user);
                 $sync_file->modified($modified);
             }
