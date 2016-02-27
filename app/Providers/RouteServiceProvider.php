@@ -27,7 +27,6 @@ class RouteServiceProvider extends ServiceProvider {
 		parent::boot($router);
 		$router->bind('classify',function($classify){
 			$ArticleClass = ArticleClassify::where('article_classify_path',$classify)->first();
-			var_dump($ArticleClass);
 			if(is_null($ArticleClass)){
 				$ArticleClass = false;
 			}

@@ -106,7 +106,7 @@ class Sync_console
             }
             //删除
             foreach ($commit["removed"] AS $removed){
-                if($addad == "master"){
+                if($removed == "master"){
                     continue;
                 }
                 $sync_file = Sync_file::instantiate($removed,$this->user);
@@ -114,7 +114,7 @@ class Sync_console
             }
             //修改
             foreach ($commit["modified"] AS $modified){
-                if($addad == "master"){
+                if($modified == "master"){
                     continue;
                 }
                 $sync_file = Sync_file::instantiate($modified,$this->user);
