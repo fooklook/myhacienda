@@ -21,7 +21,6 @@ class Sync_readme extends Sync_file
     public function modified($filename){
         //抓取内容
         $content = new contents_github($filename);
-        var_dump($content);
         //分解内容
         $explode_contents = explode("\n", $content->content);
         do{
@@ -42,6 +41,9 @@ class Sync_readme extends Sync_file
             $Classify->created_at = \Carbon\Carbon::now();
             $Classify->save();
         }while(next($explode_contents));
+        //删除未更新目录 article_classify_trunk_id==1 并且与当前时间相差10分钟以上的
+        $del_classifys = ArticleClassify::where('created_at','<',\Carbon\Carbon::createFromTimestamp(time()-600));
+        $del_classifys->delete();
         return true;
     }
 }
