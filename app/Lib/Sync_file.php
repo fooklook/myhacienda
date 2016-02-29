@@ -25,6 +25,11 @@ class Sync_file
      */
 
     public static function instantiate($filename, $user){
+        //判断是否为README.md文件-->特殊处理
+        if($filename == "README.md"){
+            $Sync_readme = new Sync_readme($user);
+            return $Sync_readme;
+        }
         //根据文件名称，判断文件类型。
         //----获取文件后缀名
         $explode = explode('.',$filename);
