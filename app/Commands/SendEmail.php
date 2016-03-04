@@ -13,14 +13,16 @@ class SendEmail extends Command implements SelfHandling, ShouldBeQueued {
 	use InteractsWithQueue, SerializesModels;
 
 	public $register;
+	private $email;
 
 	/**
 	 * Create a new command instance.
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct($email)
 	{
+		$this->email = $email;
 		//$this->register = $register;
 	}
 
@@ -31,10 +33,10 @@ class SendEmail extends Command implements SelfHandling, ShouldBeQueued {
 	 */
 	public function handle()
 	{
-		//$register = $this->register;
+		$email = $this->email;
 		//发送邮件
-		Mail::send('welcome', [], function($message){
-			$message->to('1013149199@qq.com')->subject('邮箱验证-Fooklook');
+		Mail::send('welcome', [], function($message) use ($email){
+			$message->to($email)->subject('邮箱验证-Fooklook');
 		});
 	}
 

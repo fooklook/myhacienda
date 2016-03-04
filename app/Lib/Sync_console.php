@@ -1,12 +1,14 @@
 <?php
 namespace App\Lib;
 
+use App\Commands\SyncFile;
 use App\Lib\Sync_file;
 use App\Lib\Sync_md;
 use App\Lib\Sync_image;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Queue;
 
 /**
  * Class Sync_github
@@ -99,7 +101,10 @@ class Sync_console
             //新增
             foreach ($commit["added"] AS $addad){
                 $sync_file = Sync_file::instantiate($addad,$this->user);
-                $sync_file->added($addad);
+                echo $addad;
+                //$sync_file->added($addad);
+                $action = 'added';
+                Queue::push(new SyncFile($action,$sync_file,$addad));
             }
             //删除
             foreach ($commit["removed"] AS $removed){
