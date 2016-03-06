@@ -101,7 +101,6 @@ class Sync_console
             //新增
             foreach ($commit["added"] AS $addad){
                 $sync_file = Sync_file::instantiate($addad,$this->user);
-                echo $addad;
                 //$sync_file->added($addad);
                 $action = 'added';
                 Queue::push(new SyncFile($action,$sync_file,$addad));
@@ -109,12 +108,16 @@ class Sync_console
             //删除
             foreach ($commit["removed"] AS $removed){
                 $sync_file = Sync_file::instantiate($removed,$this->user);
-                $sync_file->removed($removed);
+                //$sync_file->removed($removed);
+                $action = 'removed';
+                Queue::push(new SyncFile($action,$sync_file,$addad));
             }
             //修改
             foreach ($commit["modified"] AS $modified){
                 $sync_file = Sync_file::instantiate($modified,$this->user);
                 $sync_file->modified($modified);
+                $action = 'modified';
+                Queue::push(new SyncFile($action,$sync_file,$addad));
             }
         }
     }
