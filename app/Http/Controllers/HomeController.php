@@ -2,18 +2,15 @@
 
 use App\Album;
 use App\AlbumImage;
+use App\ArticleClassify;
 use App\User;
 
 class HomeController extends Controller {
 
+	/** ÍøÕ¾Ê×Ò³ **/
 	public function index()
 	{
-		return view('home');
+		$classifys = ArticleClassify::all();
+		return view('home/index',array('classifys'=>$classifys));
 	}
-
-	public function test(){
-
-	}
-
-
 }

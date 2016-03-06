@@ -10,7 +10,7 @@ class ArticleClassify extends Model {
 
     public $timestamps = false;
 
-    protected $fillable = array('article_classify_name', 'article_classify_trunk_id', 'created_at');
+    protected $fillable = array('article_classify_name', 'article_classify_cover', 'article_classify_trunk_id', 'created_at');
 
     public $cache_name = 'article_classify';
 

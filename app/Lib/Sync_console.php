@@ -115,7 +115,7 @@ class Sync_console
             //修改
             foreach ($commit["modified"] AS $modified){
                 $sync_file = Sync_file::instantiate($modified,$this->user);
-                $sync_file->modified($modified);
+                //$sync_file->modified($modified);
                 $action = 'modified';
                 Queue::push(new SyncFile($action,$sync_file,$addad));
             }
