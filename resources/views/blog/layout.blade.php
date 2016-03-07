@@ -28,6 +28,7 @@
     <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
+    @yield('pagecss')
 </head>
 <!-- NAVBAR
 ================================================== -->
@@ -47,5 +48,6 @@
 <script src="{{ asset('assets/bootstrap3.0/js/bootstrap.min.js') }}"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="{{ asset('js/ie-compat/ie10-viewport-bug-workaround.js') }}"></script>
+@yield('pagejs')
 </body>
 </html>

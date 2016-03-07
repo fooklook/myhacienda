@@ -16,7 +16,7 @@
                     @if($classify_item->article_classify_id == $classify->article_classify_id)
                             click
                     @endif
-                    "><img class="logo-main" src="{{ $classify_item->article_classify_cover }}"></li>
+                    "><a href="{{ url("blog/{$classify_item->article_classify_path}") }}"> <img class="logo-main" src="{{ $classify_item->article_classify_cover }}"></a></li>
                     @endforeach
                 </ul>
             </nav>
@@ -30,23 +30,8 @@
         </div>
         <hr />
         <nav>
-            {{ $articles->render() }}
             <ul class="pagination">
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
+                {!! $articles->render() !!}
             </ul>
         </nav>
     </div>
