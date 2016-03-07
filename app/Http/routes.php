@@ -6,7 +6,7 @@ Route::group(['prefix' => 'blog'],function(){
 	//列表页
 	Route::get('{classify}', 'BlogController@listpage');
 	//详细页
-	Route::get('{classify}/{name}', 'BlogController@detailpage');
+	Route::get('{classify}/{article}', 'BlogController@detailpage');
 });
 /** 登录注册功能 **/
 Route::controllers([

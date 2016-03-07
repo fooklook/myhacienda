@@ -26,14 +26,22 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 		parent::boot($router);
 		$router->bind('classify',function($classify){
-			$ArticleClass = ArticleClassify::where('article_classify_path',$classify)->first();
+			if(is_int($classify)){
+				$ArticleClass = ArticleClassify::where('article_classify_id',$classify)->first();
+			}else{
+				$ArticleClass = ArticleClassify::where('article_classify_path',$classify)->first();
+			}
 			if(is_null($ArticleClass)){
 				$ArticleClass = false;
 			}
 			return $ArticleClass;
 		});
-		$router->bind('name',function($name){
-			$Article = Article::where('article_title','like',$name."%")->first();
+		$router->bind('article',function($article){
+			if(is_int($article)){
+				$Article = Article::where('article_id',$article)->first();
+			}else{
+				$Article = Article::where('article_title','like',$article."%")->first();
+			}
 			if(is_null($Article)){
 				$Article = false;
 			}

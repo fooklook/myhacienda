@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller {
 
-	/** 博客列表页   **/
+	/** 博客列表页  根据分类名称获取内容 **/
 	public function listpage($classify){
 		$classifys = ArticleClassify::all();
 		$articles = Article::where('article_classify_id', $classify->article_classify_id)->paginate(15);
@@ -17,10 +17,8 @@ class BlogController extends Controller {
 
 	}
 
-	/** 博客详细页 **/
-	public function detailpage($classify,$name){
-		if($classify || $name){
-			var_dump($name);
-		}
+	/** 博客详细页 根据文章标题获取内容 **/
+	public function detailpage($classify,$article){
+
 	}
 }

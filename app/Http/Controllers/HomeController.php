@@ -7,7 +7,7 @@ use App\User;
 
 class HomeController extends Controller {
 
-	/** ÍøÕ¾Ê×Ò³ **/
+	/** ç½‘ç«™é¦–é¡µ **/
 	public function index()
 	{
 		$classifys = ArticleClassify::all();
