@@ -121,6 +121,9 @@ footer{
 		.blog-view-header .homelogo .logo-main-click{
 			margin-left: 24px;
 		}
+.blog-view-container img{
+	max-width: 100%;
+}
 .blog-view-container, .blog-view-list{
 	max-width: 800px;
 	background: #fff none repeat scroll 0 0;
