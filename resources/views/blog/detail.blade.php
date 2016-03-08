@@ -8,10 +8,10 @@
 @endsection
 
 @section('pagejs')
-<script type="text/javascript" src=""></script>
+<script type="text/javascript" src="{{ asset('js/marked.min.js') }}"></script>
 <script type="text/javascript">
     $(function(){
-        $(".blog-view-container").markdown()
+        $(".blog-view-container").html(marked($(".blog-view-container").html()));
     });
 </script>
 @endsection

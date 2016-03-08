@@ -199,7 +199,7 @@ class LeadMarkdown {
             $replace = array();
             foreach ($match[1] as $value) {
                 $tmp = explode("/", $value);
-                $replace[] = 'http://' . env('QINIU_DOMAINS_DEFAULT') . '/' . $this->qiniu_imgname($file_array['dirname'] . 'images' . $tmp[(count($tmp) - 1)]);
+                echo $replace[] = 'http://' . env('QINIU_DOMAINS_DEFAULT') . '/' . $this->qiniu_imgname($file_array['dirname'] . '/images/' .end($tmp));
             }
             $file_conn = str_replace($match[1], $replace, $file_conn);
         }
