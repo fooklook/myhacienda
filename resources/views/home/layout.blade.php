@@ -46,7 +46,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="{{ url('/') }}">首页</a></li>
-                        <li><a href="{{ url('blog/laravel学堂笔记') }}">个人博客</a></li>
+                        <li><a href="{{ url('blog/laravelnote') }}">个人博客</a></li>
                     </ul>
                 </div>
             </div>
