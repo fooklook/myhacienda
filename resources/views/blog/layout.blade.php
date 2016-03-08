@@ -37,7 +37,7 @@
 @yield('content')
 
 <!-- FOOTER -->
-<footer>
+<footer class="container">
     <p>&copy; 2015-2016 By fooklook xiashou.he#foxmail.com 粤ICP备15077021号-1</p>
 </footer>
 

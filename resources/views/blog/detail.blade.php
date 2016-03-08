@@ -18,7 +18,7 @@
 @section('content')
 <div class="container">
     <div class="blog-view-header">
-        <a class="home" title="首页" href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;<span class="home-font">返回首页</span></a>
+        <a class="home" title="首页" href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span>&nbsp;<span class="home-font">返回首页</span></a>
         <hr/>
         <div class="homelogo">
             <nav id="blog-nav">
