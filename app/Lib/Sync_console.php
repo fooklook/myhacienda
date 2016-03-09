@@ -110,14 +110,14 @@ class Sync_console
                 $sync_file = Sync_file::instantiate($removed,$this->user);
                 //$sync_file->removed($removed);
                 $action = 'removed';
-                Queue::push(new SyncFile($action,$sync_file,$addad));
+                Queue::push(new SyncFile($action,$sync_file,$removed));
             }
             //修改
             foreach ($commit["modified"] AS $modified){
                 $sync_file = Sync_file::instantiate($modified,$this->user);
                 //$sync_file->modified($modified);
                 $action = 'modified';
-                Queue::push(new SyncFile($action,$sync_file,$addad));
+                Queue::push(new SyncFile($action,$sync_file,$modified));
             }
         }
     }

@@ -18,11 +18,11 @@
         var ps =$(".blog-view-container").find('p');
         var reg = /^(#{1,6})(.*)/;
         ps.each(function(item, index){
-            var object = $(".blog-view-container").find("p:eq(" + item + ")");
+            var object = $(this);
+            //console.log(object.text());
             r = object.text().match(reg);
-            console.log(r);
+            //console.log(r);
             if(r !== null){
-                console.log(r[1].length);
                 var hn = "h" + r[1].length;
                 var txt = '<' + hn + '>' + r[2] + '</' + hn + '>';
                 //替换
