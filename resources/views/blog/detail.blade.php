@@ -4,14 +4,33 @@
 @endsection
 
 @section('pagecss')
-
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
 @endsection
 
 @section('pagejs')
 <script type="text/javascript" src="{{ asset('js/marked.min.js') }}"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 <script type="text/javascript">
     $(function(){
+        //marked插件
         $(".blog-view-container").html(marked($(".blog-view-container").html()));
+        //hn标签替换#
+        var ps =$(".blog-view-container").find('p');
+        var reg = /^(#{1,6})(.*)/;
+        ps.each(function(item, index){
+            var object = $(".blog-view-container").find("p:eq(" + item + ")");
+            r = object.text().match(reg);
+            console.log(r);
+            if(r !== null){
+                console.log(r[1].length);
+                var hn = "h" + r[1].length;
+                var txt = '<' + hn + '>' + r[2] + '</' + hn + '>';
+                //替换
+                object.after(txt);
+                object.remove();
+            }
+        });
+       hljs.initHighlightingOnLoad();
     });
 </script>
 @endsection
@@ -34,8 +53,6 @@
             </nav>
         </div>
     </div>
-    <div class="blog-view-container">
-        {!! $article->article_content !!}
-    </div>
+    <div class="blog-view-container">{!! $article->article_content !!}</div>
 </div><!-- /.container -->
 @endsection
