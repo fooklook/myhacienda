@@ -16,15 +16,20 @@
         $(".blog-view-container").html(marked($(".blog-view-container").html()));
         //hn标签替换#
         var ps =$(".blog-view-container").find('p');
-        var reg = /^(#{1,6})(.*)/;
+        var reg = /^(#{1,6})(.*)(\s*.*)/;
         ps.each(function(item, index){
             var object = $(this);
-            //console.log(object.text());
+            console.log(object.text());
             r = object.text().match(reg);
-            //console.log(r);
+            console.log(r);
             if(r !== null){
                 var hn = "h" + r[1].length;
                 var txt = '<' + hn + '>' + r[2] + '</' + hn + '>';
+                //兼容##后面换行段落被视为同一行的情况。
+                //http://www.fooklook.com/blog/toolnote/ssh%E5%85%AC%E9%92%A5%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8
+                if(r[3] !== null){
+                    object.after('<p>' + r[3] + '</p>');
+                }
                 //替换
                 object.after(txt);
                 object.remove();
