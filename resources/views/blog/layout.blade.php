@@ -49,5 +49,6 @@
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="{{ asset('js/ie-compat/ie10-viewport-bug-workaround.js') }}"></script>
 @yield('pagejs')
+@include('analytics_baidu')
 </body>
 </html>

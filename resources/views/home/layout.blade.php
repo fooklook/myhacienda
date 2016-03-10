@@ -77,5 +77,6 @@
         loop : true,
     })
 </script>
+@include('analytics_baidu')
 </body>
 </html>
