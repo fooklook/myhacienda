@@ -26,7 +26,9 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 		parent::boot($router);
 		$router->bind('classify',function($classify){
-			if(is_int($classify)){
+			$pattern = '/\d*/i';
+			preg_match($pattern,$classify,$result);
+			if($result[0] !== ""){
 				$ArticleClass = ArticleClassify::where('article_classify_id',$classify)->first();
 			}else{
 				$ArticleClass = ArticleClassify::where('article_classify_path',$classify)->first();
@@ -37,10 +39,13 @@ class RouteServiceProvider extends ServiceProvider {
 			return $ArticleClass;
 		});
 		$router->bind('article',function($article){
-			if(is_int($article)){
+			$pattern = '/\d*/i';
+			preg_match($pattern,$article,$result);
+			if($result[0] !== ""){
 				$Article = Article::where('article_id',$article)->first();
 			}else{
-				$Article = Article::where('article_title','like',$article."%")->first();
+				$article = str_replace('.md', '', $article);
+				$Article = Article::where('article_title', 'like', $article . "%")->first();
 			}
 			if(is_null($Article)){
 				$Article = false;
