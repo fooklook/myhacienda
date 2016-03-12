@@ -15,7 +15,7 @@ class AdminUserSeeder extends Seeder {
         $User->user_nickname = "FOOKLOOK";
         $User->user_email = "xiashuo.he@foxmail.com";
         $User->login_ip = '127.0.0.1';
-        $User->user_password = md5('hx2602966');
+        $User->user_password = md5('123456');
         $User->save();
         $AdminUser = new AdminUser();
         $AdminUser->auto_user_id = $User->user_id;
