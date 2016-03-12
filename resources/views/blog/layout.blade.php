@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="{{ $classify->article_classify_describe }}">
+    <meta name="keywords" content="Laravel学堂,php,ubuntu,nginx,apache,jquery,markdown,git,github">
+    <meta name="author" content="fooklook">
     <link rel="icon" href="{{ asset('favicon.ico') }}">
 
     <title>@yield('title')--Fooklook博客</title>

@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ����3��meta��ǩ*����*������ǰ�棬�κ��������ݶ�*����*������� -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="fooklook个人博客网站，记录技术研究笔记、个人想法和个人经验。">
+    <meta name="keywords" content="Laravel学堂,php,ubuntu,nginx,apache,jquery,markdown,git,github">
+    <meta name="author" content="fooklook">
     <link rel="icon" href="{{ asset('favicon.ico') }}">
 
     <title>@yield('title')--Fooklook</title>
