@@ -10,6 +10,9 @@ Route::group(['prefix' => 'blog'],function(){
 	Route::get('{classify}/{article}', 'BlogController@detailpage');
 
 });
+//github远程同步功能
+Route::post("push","HookController@storeEvents");
+
 /** 登录注册功能 **/
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',
@@ -19,7 +22,6 @@ Route::group(['prefix' => 'blog'],function(){
 //Route::get('error404',function(){
 //	return view('errors.404');
 //});
-//Route::post("push","HookController@storeEvents");
 //Route::get('email',function(){
 //	\Illuminate\Support\Facades\Queue::push(new \App\Commands\SendEmail('1013149199@qq.com'));
 //});
