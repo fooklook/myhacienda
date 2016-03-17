@@ -71,14 +71,15 @@ class Sync_md extends Sync_file
     }
 
     public function image_url($file_conn,$filename){
+        $file_tmp = explode('/', $filename);
+        $path = reset($file_tmp);
         //匹配本地图片地址
         $pattern = '/\((\.\/images\/.*)\)/isU';
         preg_match_all($pattern, $file_conn, $match);
         if(count($match[1]) > 0) {
             $replace = array();
             foreach ($match[1] as $value) {
-                $tmp = explode("/", $value);
-                $replace[] = 'http://' . env('QINIU_DOMAINS_DEFAULT') . '/' . Sync_image::qiniu_imgname($filename);
+                $replace[] = 'http://' . env('QINIU_DOMAINS_DEFAULT') . '/' . Sync_image::qiniu_imgname($path .'/'. $value);
             }
             $file_conn = str_replace($match[1], $replace, $file_conn);
         }
