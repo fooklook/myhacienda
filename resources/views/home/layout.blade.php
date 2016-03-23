@@ -61,7 +61,7 @@
 <div class="container" style="margin-top: 20px;">
     <p>友情链接</p>
     <a href="http://www.zlyss.com/">转折点</a> | <a href="http://boke.iflsy.com/">风流三月</a> | <a href="http://www.apkfuns.com/">舞影凌风</a> | <a href="http://www.iyuxy.com/">喻小右</a>
-    | <a href="http://boke.iflsy.com/">风流三月</a>
+    | <a href="http://www.lifameng.com/">等风来</a>
 </div>
 <!-- FOOTER -->
 <footer class="container">
