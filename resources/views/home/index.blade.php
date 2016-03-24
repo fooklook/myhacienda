@@ -5,9 +5,9 @@
 @section('content')
 <div class="swiper-container">
     <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="http://7xp3vm.com1.z0.glb.clouddn.com/bg-001.jpg" /></div>
-        <div class="swiper-slide"><img src="http://7xo7bi.com1.z0.glb.clouddn.com/bg-city001.jpg" /></div>
-        <div class="swiper-slide"><img src="http://7xo7bi.com1.z0.glb.clouddn.com/bg-xuri001.jpg" /></div>
+        <div class="swiper-slide"><img src="http://7xp3vm.com1.z0.glb.clouddn.com/niuniu032400101.jpg" /></div>
+        <div class="swiper-slide"><img src="http://7xp3vm.com1.z0.glb.clouddn.com/niuniu032400201.jpg" /></div>
+        <div class="swiper-slide"><img src="http://7xp3vm.com1.z0.glb.clouddn.com/niuniu032400301.jpg" /></div>
     </div>
     <div class="swiper-scrollbar"></div>
 </div>
