@@ -7,7 +7,7 @@
     <div class="swiper-wrapper">
         <div class="swiper-slide"><img src="http://7xp3vm.com1.z0.glb.clouddn.com/niuniu032400101.jpg" /></div>
         <div class="swiper-slide"><img src="http://7xp3vm.com1.z0.glb.clouddn.com/niuniu032400201.jpg" /></div>
-        <div class="swiper-slide"><img src="http://7xp3vm.com1.z0.glb.clouddn.com/niuniu032400301.jpg" /></div>
+        <div class="swiper-slide"><img src="http://7xp3vm.com1.z0.glb.clouddn.com/niuniu032400302.jpg" /></div>
     </div>
     <div class="swiper-scrollbar"></div>
 </div>
