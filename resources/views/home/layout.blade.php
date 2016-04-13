@@ -62,7 +62,7 @@
 @yield('content')
 <!-- 友情链接 -->
 <div class="container" style="margin-top: 20px;">
-	<p><wb:share-button appkey="1792200191" addition="number" type="button" ralateUid="2371992395"></wb:share-button></p>
+	<p><wb:share-button appkey="1792200191" addition="number" type="button" ralateUid="2371992395"></wb:share-button> | <wb:follow-button uid="2991975565" type="red_1" width="67" height="24" ></wb:follow-button></p>
     <p>友情链接</p>
     <a href="http://www.zlyss.com/">转折点</a> | <a href="http://boke.iflsy.com/">风流三月</a> | <a href="http://www.apkfuns.com/">舞影凌风</a> | <a href="http://www.iyuxy.com/">喻小右</a>
     | <a href="http://www.lifameng.com/">等风来</a>
