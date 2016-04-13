@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="baidu-site-verification" content="8tunszgmF2" />
+    <meta property="wb:webmaster" content="62567824cacb4fbe" />
     <!-- ����3��meta��ǩ*����*������ǰ�棬�κ��������ݶ�*����*������� -->
     <meta name="description" content="fooklook个人博客网站，记录技术研究笔记、个人想法和个人经验。">
     <meta name="keywords" content="Laravel学堂,php,ubuntu,nginx,apache,jquery,markdown,git,github">
