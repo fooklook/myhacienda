@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xmlns:wb="http://open.weibo.com/wb">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +27,9 @@
     <script src="{{ asset('js/ie-compat/html5shiv.min.js') }}"></script>
     <script src="{{ asset('js/ie-compat/respond.min.js') }}"></script>
     <![endif]-->
-
+	
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+	
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
@@ -60,6 +62,7 @@
 @yield('content')
 <!-- 友情链接 -->
 <div class="container" style="margin-top: 20px;">
+	<p><wb:share-button appkey="1792200191" addition="number" type="button" ralateUid="2371992395"></wb:share-button></p>
     <p>友情链接</p>
     <a href="http://www.zlyss.com/">转折点</a> | <a href="http://boke.iflsy.com/">风流三月</a> | <a href="http://www.apkfuns.com/">舞影凌风</a> | <a href="http://www.iyuxy.com/">喻小右</a>
     | <a href="http://www.lifameng.com/">等风来</a>
