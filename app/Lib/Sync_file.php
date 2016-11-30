@@ -41,6 +41,7 @@ class Sync_file
                 return $sync;
             }
         }
+        return null;        //不符合同步的内容
     }
 
     /**
