@@ -10,6 +10,17 @@ Route::group(['prefix' => 'blog'],function(){
 	Route::get('{classify}/{article}', 'BlogController@detailpage');
 
 });
+//Vue.js页面数据
+Route::group(['prefix' => 'vue'],function(){
+	//首页
+	Route::get("/", "VueController@index");
+	//列表页
+	Route::get('{classify}', 'VueController@listpage');//第一页
+	Route::get('{classify}/page/{page}', 'VueController@listpage');
+	//详细页
+	Route::get('{classify}/{article}', 'VueController@detailpage');
+
+});
 //github远程同步功能
 Route::post("push","HookController@storeEvents");
 
