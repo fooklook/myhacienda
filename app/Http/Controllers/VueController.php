@@ -49,14 +49,16 @@ class VueController extends Controller {
 				$classifys[$key]->url = url('vue/'.$classify_value->article_classify_id);
 			}
 			$count = Article::where('article_classify_id', $classify->article_classify_id)->count();
-			$articles = Article::where('article_classify_id', $classify->article_classify_id)->skip($start)->take($pagenum)->get();
+			//取消分页处理
+			//$articles = Article::where('article_classify_id', $classify->article_classify_id)->skip($start)->take($pagenum)->get();
+			$articles = Article::where('article_classify_id', $classify->article_classify_id)->get();
 			foreach($articles as $key=>$article){
 				$articles[$key]->url = url("vue/{$classify->article_classify_path}/{$article->article_title}");
 			}
 			$array = array(
 				"classifys" => $classifys,
 				"articles" => $articles,
-				"classify" => $classify->article_classify_id,
+				"classify" => $classify,
 				"count" => $count
 			);
 			return response()->json($array);
@@ -85,7 +87,7 @@ class VueController extends Controller {
 			$array = array(
 				"classifys" => $classifys,
 				"article" => $article,
-				"classify" => $classify->article_classify_id
+				"classify" => $classify
 			);
 			return response()->json($array);
 		}else{
